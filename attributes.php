@@ -1,5 +1,18 @@
 <?php
 
+/*
+ * Weights
+ * =======
+ *
+ * 0 - Irrelevant
+ * 1 - Minor importance
+ * 10 - Somewhat important
+ * 50 - Important
+ * 250 - Very important
+ * 1000 - Very Very important
+ * 5000 - Extremely important
+ */
+
 return array(
     'Age between' => array(
         'weight' => 1000,
