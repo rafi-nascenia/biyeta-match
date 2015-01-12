@@ -68,7 +68,7 @@ return array(
         },
     ),
     'Religion' => array(
-        'weight' => 1000,
+        'weight' => 5000,
         'value' => function () {
             $values = array(
                 'Christian',
