@@ -99,8 +99,13 @@ foreach ($matches as $name => $females) {
     arsort($matches[$name]);
     arsort($mutualMatches[$name]);
 }
+print_r($mutualMatches);
 
-print_r($matches['Jitu Chowdhury']);
-print_r($mutualMatches['Jitu Chowdhury']);
-print_r($matches['Subrina Sundil']);
-print_r($mutualMatches['Subrina Sundil']);
+$topScores = array();
+foreach ($sampleData as $gender => $people) {
+    foreach ($people as $data) {
+        $topScores[$gender][$data['Name']] = array_sum($mutualMatches[$data['Name']]) / count($mutualMatches[$data['Name']]);
+    }
+    arsort($topScores[$gender]);
+}
+print_r($topScores);
