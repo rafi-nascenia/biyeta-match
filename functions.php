@@ -13,8 +13,7 @@ function readCsv($filename) {
             continue;
         }
 
-        $size = min(count($header), count($line));
-        $data[] = array_combine(array_slice($header, 0, $size), $line);
+        $data[] = array_combine($header, $line);
     }
 
     return $data;
