@@ -8,7 +8,7 @@ return array(
         },
     ),
     'Marital Status' => array(
-        'weight' => 250,
+        'weight' => 1000,
         'value' => function () {
             $values = array(
                 'AL',
