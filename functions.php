@@ -47,7 +47,7 @@ function parsePrefs($name, $prefs) {
 function calcScore($name, $weight, $value, $prefs) {
     $prefValues = parsePrefs($name, $prefs);
 
-    if ($prefValues == '' || in_array("Doesn't Matter", $prefValues)) {
+    if ($prefs == '' || in_array("Doesn't Matter", $prefValues)) {
         return array(0, 0);
     }
 
