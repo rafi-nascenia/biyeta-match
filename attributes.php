@@ -33,7 +33,7 @@ return array(
         },
     ),
     'Height' => array(
-        'weight' => 10,
+        'weight' => 50,
         'value' => function () {
             return rand(130, 200);
         },
@@ -53,7 +53,7 @@ return array(
         },
     ),
     'Complexion' => array(
-        'weight' => 250,
+        'weight' => 50,
         'value' => function () {
             $values = array(
                 'Dark',
@@ -95,7 +95,7 @@ return array(
         },
     ),
     'Family Value' => array(
-        'weight' => 250,
+        'weight' => 1000,
         'value' => function () {
             $values = array(
                 'Liberal',
@@ -107,7 +107,7 @@ return array(
         },
     ),
     'Education' => array(
-        'weight' => 250,
+        'weight' => 1000,
         'value' => function () {
             $values = array(
                 'Bachelor',
@@ -126,7 +126,7 @@ return array(
         },
     ),
     'Area' => array(
-        'weight' => 250,
+        'weight' => 50,
         'value' => function () {
             $values = array(
                 'Administrative services',
@@ -158,7 +158,7 @@ return array(
         },
     ),
     'Profession' => array(
-        'weight' => 50,
+        'weight' => 250,
         'value' => function () {
             $values = array(
                 'Accountant',
