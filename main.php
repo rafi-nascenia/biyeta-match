@@ -96,11 +96,15 @@ foreach ($sampleData['male'] as $male) {
     }
 }
 
+if(!is_dir('data/individuals')) {
+    mkdir('data/individuals');
+}
+
 foreach ($sampleData as $gender => $people) {
     foreach ($people as $name => $data) {
         arsort($data['matches']);
         arsort($data['mutualMatches']);
 
-        file_put_contents('data/'. $name .'.json', json_encode($data, JSON_PRETTY_PRINT));
+        file_put_contents('data/individuals/'. $name .'.json', json_encode($data, JSON_PRETTY_PRINT));
     }
 }
