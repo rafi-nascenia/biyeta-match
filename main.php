@@ -66,7 +66,7 @@ foreach ($sampleData['male'] as $male) {
             $total += $totalVal;
         }
 
-        $matches[$male['Name']][$female['Name']] = 100 * $score / $total;
+        $sampleData['male'][$male['Name']]['matches'][$female['Name']] = 100 * $score / $total;
 
         // Female to Male match
         $score = 0;
@@ -84,28 +84,23 @@ foreach ($sampleData['male'] as $male) {
             $total += $totalVal;
         }
 
-        $matches[$female['Name']][$male['Name']] = 100 * $score / $total;
+        $sampleData['female'][$female['Name']]['matches'][$male['Name']] = 100 * $score / $total;
 
         // Mutual match
-        $mutualMatches[$male['Name']][$female['Name']] = sqrt(
-            $matches[$male['Name']][$female['Name']]
-            * $matches[$female['Name']][$male['Name']]
+        $mutualMatch = sqrt(
+            $sampleData['male'][$male['Name']]['matches'][$female['Name']]
+            * $sampleData['female'][$female['Name']]['matches'][$male['Name']]
         );
-        $mutualMatches[$female['Name']][$male['Name']] = $mutualMatches[$male['Name']][$female['Name']];
+        $sampleData['male'][$male['Name']]['mutualMatches'][$female['Name']] = $mutualMatch;
+        $sampleData['female'][$female['Name']]['mutualMatches'][$male['Name']] = $mutualMatch;
     }
 }
 
-foreach ($matches as $name => $females) {
-    arsort($matches[$name]);
-    arsort($mutualMatches[$name]);
-}
-print_r($mutualMatches);
-
-$topScores = array();
 foreach ($sampleData as $gender => $people) {
-    foreach ($people as $data) {
-        $topScores[$gender][$data['Name']] = array_sum($mutualMatches[$data['Name']]) / count($mutualMatches[$data['Name']]);
+    foreach ($people as $name => $data) {
+        arsort($data['matches']);
+        arsort($data['mutualMatches']);
+
+        file_put_contents('data/'. $name .'.json', json_encode($data, JSON_PRETTY_PRINT));
     }
-    arsort($topScores[$gender]);
 }
-print_r($topScores);
