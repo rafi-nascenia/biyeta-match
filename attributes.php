@@ -34,7 +34,7 @@ return array(
         },
     ),
     'Children' => array(
-        'weight' => 10,
+        'weight' => 0,
         'value' => function () {
             $values = array(
                 'No',
@@ -94,7 +94,7 @@ return array(
         },
     ),
     'Mother Tongue' => array(
-        'weight' => 50,
+        'weight' => 0,
         'value' => function () {
             $values = array(
                 'Bengal',
@@ -108,7 +108,7 @@ return array(
         },
     ),
     'Family Value' => array(
-        'weight' => 1000,
+        'weight' => 0,
         'value' => function () {
             $values = array(
                 'Liberal',
@@ -139,7 +139,7 @@ return array(
         },
     ),
     'Area' => array(
-        'weight' => 50,
+        'weight' => 0,
         'value' => function () {
             $values = array(
                 'Administrative services',
@@ -237,7 +237,7 @@ return array(
         },
     ),
     'Diet' => array(
-        'weight' => 10,
+        'weight' => 0,
         'value' => function () {
             $values = array(
                 'Eggetarian',
@@ -250,7 +250,7 @@ return array(
         },
     ),
     'Smoke' => array(
-        'weight' => 10,
+        'weight' => 0,
         'value' => function () {
             $values = array(
                 'AL',
@@ -262,7 +262,7 @@ return array(
         },
     ),
     'Drink' => array(
-        'weight' => 50,
+        'weight' => 0,
         'value' => function () {
             $values = array(
                 'No',
@@ -348,7 +348,7 @@ return array(
         },
     ),
     'Residency Status' => array(
-        'weight' => 10,
+        'weight' => 0,
         'value' => function () {
             $values = array(
                 'Permanent Resident',
