@@ -43,7 +43,7 @@ function parsePrefs($name, $prefs) {
     return $prefValues;
 }
 
-function calcScore($name, $weight, $value, $prefs) {
+function calcScore1($name, $weight, $value, $prefs) {
     $prefValues = parsePrefs($name, $prefs);
 
     if ($prefs == '' || in_array("Doesn't Matter", $prefValues)) {
@@ -51,6 +51,27 @@ function calcScore($name, $weight, $value, $prefs) {
     }
 
     $score = in_array($value, $prefValues) ? $weight : 0;
+    $total = $weight;
+
+    return array($score, $total);
+}
+
+function calcScore2($name, $weight, $value, $prefs) {
+    $prefValues = parsePrefs($name, $prefs);
+
+    if ($prefs == '' || in_array("Doesn't Matter", $prefValues)) {
+        return array(0, 0);
+    }
+
+    if ($name == 'Height') {
+        if (in_array($value, $prefValues)) {
+            $score = ($value - $prefValues[0]) * ($weight - $weight/2) / ($prefValues[count($prefValues) - 1] - $prefValues[0]) + $weight/2;
+        } else {
+            $score = 0;
+        }
+    } else {
+        $score = in_array($value, $prefValues) ? $weight : 0;
+    }
     $total = $weight;
 
     return array($score, $total);
@@ -64,4 +85,31 @@ function randAttr($gender, $name, $prefs) {
     }
 
     return $prefValues[array_rand($prefValues)];
+}
+
+function makeChartData($rawData) {
+    $colors = array(
+        1 => 'blue',
+        2 => 'red',
+    );
+
+    $labels = array();
+    $datasets = array();
+
+    foreach ($rawData as $variation => $matches) {
+        $color = $colors[$variation];
+
+        $labels = array_keys($matches);
+        $datasets[] = array(
+            'label' => $variation,
+            'strokeColor' => $color,
+            'fillColor' => $color,
+            'data' => array_values($matches),
+        );
+    }
+
+    return json_encode(array(
+        'labels' => $labels,
+        'datasets' => $datasets,
+    ));
 }
