@@ -46,7 +46,7 @@ return array(
         },
     ),
     'Height' => array(
-        'weight' => 50,
+        'weight' => 1000,
         'value' => function () {
             return rand(130, 200);
         },
