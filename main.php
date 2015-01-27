@@ -140,7 +140,11 @@ foreach ($sampleData as $gender => $people) {
     var options = {
         animation: false,
         datasetFill: false,
-        scaleBeginAtZero: true
+        scaleBeginAtZero: true,
+        scaleOverride: true,
+        scaleStartValue: 0,
+        scaleStepWidth: 10,
+        scaleSteps: 10
     };
 
     new Chart(ctx).Line(data, options);
