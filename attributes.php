@@ -33,18 +33,6 @@ return array(
             return $values[array_rand($values)];
         },
     ),
-    'Children' => array(
-        'weight' => 0,
-        'value' => function () {
-            $values = array(
-                'No',
-                'Yes. Living together',
-                'Yes. Not living together',
-            );
-
-            return $values[array_rand($values)];
-        },
-    ),
     'Height' => array(
         'weight' => 1000,
         'value' => function () {
@@ -66,7 +54,7 @@ return array(
         },
     ),
     'Complexion' => array(
-        'weight' => 50,
+        'weight' => 250,
         'value' => function () {
             $values = array(
                 'Dark',
@@ -93,32 +81,6 @@ return array(
             return $values[array_rand($values)];
         },
     ),
-    'Mother Tongue' => array(
-        'weight' => 0,
-        'value' => function () {
-            $values = array(
-                'Bengal',
-                'Bengali',
-                'Englis',
-                'English',
-                'Other',
-            );
-
-            return $values[array_rand($values)];
-        },
-    ),
-    'Family Value' => array(
-        'weight' => 0,
-        'value' => function () {
-            $values = array(
-                'Liberal',
-                'Moderate',
-                'Traditional',
-            );
-
-            return $values[array_rand($values)];
-        },
-    ),
     'Education' => array(
         'weight' => 1000,
         'value' => function () {
@@ -133,38 +95,6 @@ return array(
                 'Phd/Doctorate',
                 'SSC',
                 'Undergraduate',
-            );
-
-            return $values[array_rand($values)];
-        },
-    ),
-    'Area' => array(
-        'weight' => 0,
-        'value' => function () {
-            $values = array(
-                'Administrative services',
-                'Advertising/ Marketing',
-                'Architecture',
-                'Armed Forces',
-                'Arts',
-                'Commerce',
-                'Computers/ IT',
-                'Education',
-                'Engineering/ Technology',
-                'Fashion',
-                'Finance',
-                'Fine Arts',
-                'Home Science',
-                'Law',
-                'Management',
-                'Medicine',
-                'No',
-                'Nursing/ H',
-                'Nursing/ Health Science',
-                'Office administration',
-                'Science',
-                'Shipping',
-                'Travel & Tourism',
             );
 
             return $values[array_rand($values)];
@@ -236,45 +166,8 @@ return array(
             return $values[array_rand($values)];
         },
     ),
-    'Diet' => array(
-        'weight' => 0,
-        'value' => function () {
-            $values = array(
-                'Eggetarian',
-                'Non-Veg',
-                'Occasionally Non-Veg',
-                'Veg',
-            );
-
-            return $values[array_rand($values)];
-        },
-    ),
-    'Smoke' => array(
-        'weight' => 0,
-        'value' => function () {
-            $values = array(
-                'AL',
-                'No',
-                'Occasionally',
-            );
-
-            return $values[array_rand($values)];
-        },
-    ),
-    'Drink' => array(
-        'weight' => 0,
-        'value' => function () {
-            $values = array(
-                'No',
-                'Occasionally',
-                'AL',
-            );
-
-            return $values[array_rand($values)];
-        },
-    ),
     'Home Country' => array(
-        'weight' => 50,
+        'weight' => 10,
         'value' => function () {
             $values = array(
                 'Australia',
@@ -332,27 +225,6 @@ return array(
                 'United Arab Emirates',
                 'United Kingdom',
                 'United States',
-            );
-
-            return $values[array_rand($values)];
-        },
-    ),
-    'City' => array(
-        'weight' => 0,
-        'value' => function () {
-            $values = array(
-                'No',
-            );
-
-            return $values[array_rand($values)];
-        },
-    ),
-    'Residency Status' => array(
-        'weight' => 0,
-        'value' => function () {
-            $values = array(
-                'Permanent Resident',
-                'Work Permit',
             );
 
             return $values[array_rand($values)];
