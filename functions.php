@@ -88,10 +88,10 @@ function calcScore2($type, $name, $weight, $value, $prefs) {
 
 function makeChartData($rawData) {
     $colors = array(
-        1 => '#e08600',
-        2 => '#ffddaa',
-        4 => '#da00b5',
-        3 => '#ffb8f3',
+        1 => '#ff5500',
+        2 => '#ffb692',
+        4 => '#009dfe',
+        3 => '#b0e1ff',
     );
 
     $labels = array();
