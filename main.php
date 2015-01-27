@@ -71,6 +71,7 @@ foreach ($sampleData['male'] as $male) {
             foreach ($attributes as $name => $attribute) {
                 list($scoreVal, $totalVal) = call_user_func(
                     'calcScore'. ($variation % 2 == 1 ? 1 : 2)
+                    , 'm2f'
                     , $name
                     , $variation <= 2 ? $attribute['m2f']['weight1'] : $attribute['m2f']['weight2']
                     , $female[$name]
@@ -90,6 +91,7 @@ foreach ($sampleData['male'] as $male) {
             foreach ($attributes as $name => $attribute) {
                 list($scoreVal, $totalVal) = call_user_func(
                     'calcScore'. ($variation % 2 == 1 ? 1 : 2)
+                    , 'f2m'
                     , $name
                     , $variation <= 2 ? $attribute['f2m']['weight1'] : $attribute['f2m']['weight2']
                     , $male[$name]

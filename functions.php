@@ -38,7 +38,7 @@ function parsePrefs($name, $prefs) {
     return $prefValues;
 }
 
-function calcScore1($name, $weight, $value, $prefs) {
+function calcScore1($type, $name, $weight, $value, $prefs) {
     $prefValues = parsePrefs($name, $prefs);
 
     if ($value == '' || $prefs == '') {
@@ -51,21 +51,35 @@ function calcScore1($name, $weight, $value, $prefs) {
     return array($score, $total);
 }
 
-function calcScore2($name, $weight, $value, $prefs) {
+function calcScore2($type, $name, $weight, $value, $prefs) {
     $prefValues = parsePrefs($name, $prefs);
 
     if ($value == '' || $prefs == '') {
         return array(0, 0);
     }
 
-    if ($name == 'উচ্চতা') {
-        if (in_array($value, $prefValues)) {
-            $score = ($value - $prefValues[0]) * ($weight - $weight/2) / ($prefValues[count($prefValues) - 1] - $prefValues[0]) + $weight/2;
-        } else {
-            $score = 0;
-        }
+    $valueInRange = in_array($value, $prefValues);
+    $start = $prefValues[0];
+    $end = $prefValues[count($prefValues) - 1];
+    $log = 1 - log(abs($value - average($start, $end)));
+    $log10 = 10 - log(abs($value - average($start, $end)));
+
+    if ($type == 'm2f' && in_array($name, array('বয়স', 'উচ্চতা'))) {
+        $score = $weight * ($valueInRange ? 1 + log($end/$value) : 0.01 * $log10);
+    } elseif ($type == 'm2f' && in_array($name, array('গড়ন', 'শিক্ষাগত যোগ্যতা'))) {
+        $score = $weight * ($valueInRange ? 1 : ($log == 1 ? 0.1 : 0.1 * $log));
+    } elseif ($type == 'm2f' && in_array($name, array('গায়ের রং', 'নামাজ (muslims only)', 'রোজা (muslims only)'))) {
+        $score = $weight * ($valueInRange ? 1 + log($value/$start) : ($log == 1 ? 0.1 : 0.1 * $log));
+    } elseif ($type == 'f2m' && in_array($name, array('বয়স'))) {
+        $score = $weight * ($valueInRange ? 1 : ($log > 0 ? $log : 0));
+    } elseif ($type == 'f2m' && in_array($name, array('উচ্চতা'))) {
+        $score = $weight * ($valueInRange ? 1 + log($value/$start) : 0.01 * $log10);
+    } elseif ($type == 'f2m' && in_array($name, array('শিক্ষাগত যোগ্যতা', 'নামাজ (muslims only)', 'রোজা (muslims only)', 'গায়ের রং'))) {
+        $score = $weight * ($valueInRange ? 1 + log($value/$start) : ($log == 1 ? 0.1 : 0.1 * $log));
+    } elseif ($type == 'f2m' && in_array($name, array('গড়ন'))) {
+        $score = $weight * ($valueInRange ? 1 : ($log == 1 ? 0.1 : 0.1 * $log));
     } else {
-        $score = in_array($value, $prefValues) ? $weight : 0;
+        $score = $valueInRange ? $weight : 0;
     }
     $total = $weight;
 
@@ -99,4 +113,8 @@ function makeChartData($rawData) {
         'labels' => $labels,
         'datasets' => $datasets,
     ));
+}
+
+function average($from, $to) {
+    return ($from + $to) / 2;
 }
