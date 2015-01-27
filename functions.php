@@ -58,7 +58,7 @@ function calcScore2($name, $weight, $value, $prefs) {
         return array(0, 0);
     }
 
-    if ($name == 'Height') {
+    if ($name == 'উচ্চতা') {
         if (in_array($value, $prefValues)) {
             $score = ($value - $prefValues[0]) * ($weight - $weight/2) / ($prefValues[count($prefValues) - 1] - $prefValues[0]) + $weight/2;
         } else {
