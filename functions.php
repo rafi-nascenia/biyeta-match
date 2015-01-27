@@ -28,16 +28,11 @@ function pick($data, $attr) {
 }
 
 function parsePrefs($name, $prefs) {
-    $prefValues = explode(',', $prefs);
-
-    if ($name == 'Age between') {
-        list($lower, $upper) = explode(' To ', $prefs);
-        $prefValues = range($lower, $upper);
-    } elseif ($name == 'Height') {
-        $limits = explode(',', $prefs);
-        list(, $lower) = explode(' - ', $limits[0]);
-        list(, $upper) = explode(' - ', $limits[1]);
-        $prefValues = range(intval($lower), intval($upper));
+    if (strpos($prefs, '-') !== false) {
+        list($lower, $upper) = explode('-', $prefs);
+        $prefValues = range(trim($lower), trim($upper));
+    } else {
+        $prefValues = array_map('trim', explode(',', $prefs));
     }
 
     return $prefValues;
@@ -46,7 +41,7 @@ function parsePrefs($name, $prefs) {
 function calcScore1($name, $weight, $value, $prefs) {
     $prefValues = parsePrefs($name, $prefs);
 
-    if ($prefs == '' || in_array("Doesn't Matter", $prefValues)) {
+    if ($value == '' || $prefs == '') {
         return array(0, 0);
     }
 
@@ -59,7 +54,7 @@ function calcScore1($name, $weight, $value, $prefs) {
 function calcScore2($name, $weight, $value, $prefs) {
     $prefValues = parsePrefs($name, $prefs);
 
-    if ($prefs == '' || in_array("Doesn't Matter", $prefValues)) {
+    if ($value == '' || $prefs == '') {
         return array(0, 0);
     }
 
@@ -75,16 +70,6 @@ function calcScore2($name, $weight, $value, $prefs) {
     $total = $weight;
 
     return array($score, $total);
-}
-
-function randAttr($gender, $name, $prefs) {
-    $prefValues = parsePrefs($name, $prefs);
-
-    if (in_array($name, array('Age between', 'Height', 'Education'))) {
-        return $gender == 'male' ? end($prefValues) : current($prefValues);
-    }
-
-    return $prefValues[array_rand($prefValues)];
 }
 
 function makeChartData($rawData) {

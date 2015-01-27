@@ -7,8 +7,14 @@ $variations = array(1, 2, 3, 4);
 
 // == Fetch master data
 $masterData = array(
-    'female' => readCsv('data/female-prefs.csv'),
-    'male' => readCsv('data/male-prefs.csv'),
+    'female' => array(
+        'prefs' => readCsv('data/female-prefs.csv'),
+        'profile' => readCsv('data/female-profile.csv'),
+    ),
+    'male' => array(
+        'prefs' => readCsv('data/male-prefs.csv'),
+        'profile' => readCsv('data/male-profile.csv'),
+    ),
 );
 
 // == Generate Possible Values
@@ -21,21 +27,29 @@ $masterData = array(
 
 $sampleData = array();
 
-// == Generate Sample Data
+// == Combine profile and prefs data
 // foreach (array('female', 'male') as $gender) {
-//     $sampleData = array();
-//     foreach ($masterData[$gender] as $i => $data) {
+//     $garbage = array();
+//     foreach ($masterData[$gender]['profile'] as $i => $data) {
 //         $sampleData[$gender][$data['Name']]['Name'] = $data['Name'];
+//         $garbage[$data['Name']] = $data['Name'];
 // 
 //         foreach ($attributes as $name => $attribute) {
-//             $attr = randAttr($gender, $name, @$data[$name]);
-//             if ($attr == "Doesn't Matter" || empty($attr)) {
-//                 $attr = $attribute['value']();
-//             }
+//             $sampleData[$gender][$data['Name']][$name] = @$data[$name];
+//         }
+//     }
+//     foreach ($masterData[$gender]['prefs'] as $i => $data) {
+//         if (!isset($sampleData[$gender][$data['Name']])) {
+//             continue;
+//         }
 // 
-//             $sampleData[$gender][$data['Name']][$name] = $attr;
+//         unset($garbage[$data['Name']]);
+//         foreach ($attributes as $name => $attribute) {
 //             $sampleData[$gender][$data['Name']][$name .'_Pref'] = @$data[$name];
 //         }
+//     }
+//     foreach ($garbage as $name) {
+//         unset($sampleData[$gender][$name]);
 //     }
 //     file_put_contents('data/'. $gender .'-sample.json', json_encode($sampleData[$gender], JSON_PRETTY_PRINT));
 // }
@@ -57,7 +71,7 @@ foreach ($sampleData['male'] as $male) {
                 list($scoreVal, $totalVal) = call_user_func(
                     'calcScore'. ($variation % 2 == 1 ? 1 : 2)
                     , $name
-                    , $variation <= 2 ? $attribute['weight1'] : $attribute['weight2']
+                    , $variation <= 2 ? $attribute['m2f']['weight1'] : $attribute['m2f']['weight2']
                     , $female[$name]
                     , $male[$name .'_Pref']
                 );
@@ -66,7 +80,7 @@ foreach ($sampleData['male'] as $male) {
                 $total += $totalVal;
             }
 
-            $sampleData['male'][$male['Name']]['matches'. $variation][$female['Name']] = 100 * $score / $total;
+            $sampleData['male'][$male['Name']]['matches'][$variation][$female['Name']] = 100 * $score / $total;
 
             // Female to Male match
             $score = 0;
@@ -76,7 +90,7 @@ foreach ($sampleData['male'] as $male) {
                 list($scoreVal, $totalVal) = call_user_func(
                     'calcScore'. ($variation % 2 == 1 ? 1 : 2)
                     , $name
-                    , $variation <= 2 ? $attribute['weight1'] : $attribute['weight2']
+                    , $variation <= 2 ? $attribute['f2m']['weight1'] : $attribute['f2m']['weight2']
                     , $male[$name]
                     , @$female[$name .'_Pref']
                 );
@@ -85,12 +99,12 @@ foreach ($sampleData['male'] as $male) {
                 $total += $totalVal;
             }
 
-            $sampleData['female'][$female['Name']]['matches'. $variation][$male['Name']] = 100 * $score / $total;
+            $sampleData['female'][$female['Name']]['matches'][$variation][$male['Name']] = 100 * $score / $total;
 
             // Mutual match
             $mutualMatch = sqrt(
-                $sampleData['male'][$male['Name']]['matches'. $variation][$female['Name']]
-                * $sampleData['female'][$female['Name']]['matches'. $variation][$male['Name']]
+                $sampleData['male'][$male['Name']]['matches'][$variation][$female['Name']]
+                * $sampleData['female'][$female['Name']]['matches'][$variation][$male['Name']]
             );
             $sampleData['male'][$male['Name']]['mutualMatches'][$variation][$female['Name']] = $mutualMatch;
             $sampleData['female'][$female['Name']]['mutualMatches'][$variation][$male['Name']] = $mutualMatch;
@@ -112,7 +126,7 @@ foreach ($sampleData as $gender => $people) {
         // match graph
 
         // mutual-match graph
-        $html[] = '<canvas id="mutual-match" width="3840" height="480"></canvas>';
+        $html[] = '<canvas id="mutual-match" width="1920" height="480"></canvas>';
         $chartData = makeChartData($data['mutualMatches']);
         $html[] = <<<JS
 <script>
