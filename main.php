@@ -58,6 +58,7 @@ $sampleData = array();
 
 foreach (array('female', 'male') as $gender) {
     $sampleData[$gender] = json_decode(file_get_contents('data/'. $gender .'-sample.json'), true);
+    ksort($sampleData[$gender], SORT_REGULAR | SORT_FLAG_CASE);
 }
 
 foreach ($sampleData['male'] as $male) {
