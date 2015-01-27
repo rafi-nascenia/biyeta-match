@@ -3,7 +3,7 @@
 include 'functions.php';
 
 $attributes = include 'attributes.php';
-$variations = array(1, 2);
+$variations = array(1, 2, 3, 4);
 
 // == Fetch master data
 $masterData = array(
@@ -55,9 +55,9 @@ foreach ($sampleData['male'] as $male) {
 
             foreach ($attributes as $name => $attribute) {
                 list($scoreVal, $totalVal) = call_user_func(
-                    'calcScore'. $variation
+                    'calcScore'. ($variation % 2 == 1 ? 1 : 2)
                     , $name
-                    , $attribute['weight']
+                    , $variation <= 2 ? $attribute['weight1'] : $attribute['weight2']
                     , $female[$name]
                     , $male[$name .'_Pref']
                 );
@@ -74,9 +74,9 @@ foreach ($sampleData['male'] as $male) {
 
             foreach ($attributes as $name => $attribute) {
                 list($scoreVal, $totalVal) = call_user_func(
-                    'calcScore'. $variation
+                    'calcScore'. ($variation % 2 == 1 ? 1 : 2)
                     , $name
-                    , $attribute['weight']
+                    , $variation <= 2 ? $attribute['weight1'] : $attribute['weight2']
                     , $male[$name]
                     , @$female[$name .'_Pref']
                 );
@@ -132,24 +132,18 @@ foreach ($sampleData as $gender => $people) {
 JS;
 
         // attributes
-        $html[] = '<table>';
+        $html[] = '<table style="border: 1px solid #666">';
         $html[] = '<tr><th>Name</th><td>'. $data['Name'] .'</td><td></td></tr>';
         foreach ($attributes as $name => $attribute) {
-            if ($attribute['weight'] == 0) {
-                continue;
-            }
             $html[] = '<tr><th>'. $name .'</th><td>'. $data[$name] .'</td><td>'. $data[$name .'_Pref'] .'</td></tr>';
         }
         $html[] = '</table>';
 
         // others
         foreach ($sampleData[$gender == 'male' ? 'female' : 'male'] as $otherData) {
-            $html[] = '<table>';
+            $html[] = '<table style="border: 1px solid #666">';
             $html[] = '<tr><th>Name</th><td>'. $otherData['Name'] .'</td><td></td></tr>';
             foreach ($attributes as $name => $attribute) {
-                if ($attribute['weight'] == 0) {
-                    continue;
-                }
                 $html[] = '<tr><th>'. $name .'</th><td>'. $otherData[$name] .'</td><td>'. $otherData[$name .'_Pref'] .'</td></tr>';
             }
             $html[] = '</table>';

@@ -89,8 +89,10 @@ function randAttr($gender, $name, $prefs) {
 
 function makeChartData($rawData) {
     $colors = array(
-        1 => 'blue',
-        2 => 'red',
+        1 => '#e08600',
+        2 => '#ffddaa',
+        4 => '#da00b5',
+        3 => '#ffb8f3',
     );
 
     $labels = array();

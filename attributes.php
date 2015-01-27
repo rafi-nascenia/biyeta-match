@@ -5,23 +5,23 @@
  * =======
  *
  * 0 - Irrelevant
- * 1 - Minor importance
- * 10 - Somewhat important
- * 50 - Important
- * 250 - Very important
- * 1000 - Very Very important
- * 5000 - Extremely important
+ * 1 - Somewhat important
+ * 10 - Important
+ * 50 - Very important
+ * 250 - Extremely important
  */
 
 return array(
     'Age between' => array(
-        'weight' => 1000,
+        'weight1' => 50,
+        'weight2' => 34,
         'value' => function () {
             return rand(18, 60);
         },
     ),
     'Marital Status' => array(
-        'weight' => 1000,
+        'weight1' => 50,
+        'weight2' => 233,
         'value' => function () {
             $values = array(
                 'AL',
@@ -34,13 +34,15 @@ return array(
         },
     ),
     'Height' => array(
-        'weight' => 1000,
+        'weight1' => 50,
+        'weight2' => 8,
         'value' => function () {
             return rand(130, 200);
         },
     ),
     'Body Type' => array(
-        'weight' => 50,
+        'weight1' => 10,
+        'weight2' => 1,
         'value' => function () {
             $values = array(
                 'Athletic',
@@ -54,7 +56,8 @@ return array(
         },
     ),
     'Complexion' => array(
-        'weight' => 250,
+        'weight1' => 10,
+        'weight2' => 1,
         'value' => function () {
             $values = array(
                 'Dark',
@@ -69,7 +72,8 @@ return array(
         },
     ),
     'Religion' => array(
-        'weight' => 5000,
+        'weight1' => 250,
+        'weight2' => 377,
         'value' => function () {
             $values = array(
                 'Christian',
@@ -82,7 +86,8 @@ return array(
         },
     ),
     'Education' => array(
-        'weight' => 1000,
+        'weight1' => 50,
+        'weight2' => 13,
         'value' => function () {
             $values = array(
                 'Bachelor',
@@ -101,7 +106,8 @@ return array(
         },
     ),
     'Profession' => array(
-        'weight' => 250,
+        'weight1' => 50,
+        'weight2' => 55,
         'value' => function () {
             $values = array(
                 'Accountant',
@@ -167,7 +173,8 @@ return array(
         },
     ),
     'Home Country' => array(
-        'weight' => 10,
+        'weight1' => 1,
+        'weight2' => 21,
         'value' => function () {
             $values = array(
                 'Australia',
