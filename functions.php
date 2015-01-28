@@ -57,10 +57,17 @@ function calcScore2($type, $name, $weight, $value, $prefs) {
     $prefValues = parsePrefs($name, $prefs);
 
     if ($value == '' || $prefs == '') {
+        if ($name == 'জেলা') {
+            return array($weight, $weight);
+        }
         return array(0, 0);
     }
 
-    $valueInRange = in_array($value, $prefValues);
+    if ($name == 'জেলা') {
+        $valueInRange = !in_array($value, $prefValues);
+    } else {
+        $valueInRange = in_array($value, $prefValues);
+    }
     $start = $prefValues[0];
     $end = $prefValues[count($prefValues) - 1];
     $log = 1 - log(abs($value - average($start, $end)));
