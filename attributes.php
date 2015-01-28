@@ -17,12 +17,12 @@ return array (
     'm2f' => 
     array (
       'weight1' => 250,
-      'weight2' => 610,
+      'weight2' => 1000,
     ),
     'f2m' => 
     array (
       'weight1' => 250,
-      'weight2' => 377,
+      'weight2' => 800,
     ),
   ),
   'ধর্মের ভাগ' => 
@@ -30,12 +30,12 @@ return array (
     'm2f' => 
     array (
       'weight1' => 250,
-      'weight2' => 233,
+      'weight2' => 500,
     ),
     'f2m' => 
     array (
       'weight1' => 250,
-      'weight2' => 144,
+      'weight2' => 400,
     ),
   ),
   'বৈবাহিক অবস্থা' => 
@@ -43,12 +43,12 @@ return array (
     'm2f' => 
     array (
       'weight1' => 50,
-      'weight2' => 377,
+      'weight2' => 70,
     ),
     'f2m' => 
     array (
       'weight1' => 50,
-      'weight2' => 233,
+      'weight2' => 65,
     ),
   ),
   'পেশা' => 
@@ -56,12 +56,12 @@ return array (
     'm2f' => 
     array (
       'weight1' => 50,
-      'weight2' => 2,
+      'weight2' => 15,
     ),
     'f2m' => 
     array (
       'weight1' => 50,
-      'weight2' => 55,
+      'weight2' => 50,
     ),
   ),
   'প্রফেশনাল গ্রুপ' => 
@@ -69,12 +69,12 @@ return array (
     'm2f' => 
     array (
       'weight1' => 10,
-      'weight2' => 1,
+      'weight2' => 10,
     ),
     'f2m' => 
     array (
       'weight1' => 10,
-      'weight2' => 89,
+      'weight2' => 55,
     ),
   ),
   'বয়স' => 
@@ -82,12 +82,12 @@ return array (
     'm2f' => 
     array (
       'weight1' => 50,
-      'weight2' => 144,
+      'weight2' => 60,
     ),
     'f2m' => 
     array (
       'weight1' => 50,
-      'weight2' => 34,
+      'weight2' => 45,
     ),
   ),
   'জেলা' => 
@@ -95,12 +95,12 @@ return array (
     'm2f' => 
     array (
       'weight1' => 1,
-      'weight2' => 55,
+      'weight2' => 50,
     ),
     'f2m' => 
     array (
       'weight1' => 1,
-      'weight2' => 21,
+      'weight2' => 40,
     ),
   ),
   'উচ্চতা' => 
@@ -108,12 +108,12 @@ return array (
     'm2f' => 
     array (
       'weight1' => 50,
-      'weight2' => 21,
+      'weight2' => 40,
     ),
     'f2m' => 
     array (
       'weight1' => 50,
-      'weight2' => 8,
+      'weight2' => 30,
     ),
   ),
   'শিক্ষাগত যোগ্যতা' => 
@@ -121,12 +121,12 @@ return array (
     'm2f' => 
     array (
       'weight1' => 50,
-      'weight2' => 8,
+      'weight2' => 30,
     ),
     'f2m' => 
     array (
       'weight1' => 50,
-      'weight2' => 13,
+      'weight2' => 35,
     ),
   ),
   'নামাজ (muslims only)' => 
@@ -134,12 +134,12 @@ return array (
     'm2f' => 
     array (
       'weight1' => 10,
-      'weight2' => 3,
+      'weight2' => 20,
     ),
     'f2m' => 
     array (
       'weight1' => 10,
-      'weight2' => 5,
+      'weight2' => 25,
     ),
   ),
   'রোজা (muslims only)' => 
@@ -147,12 +147,12 @@ return array (
     'm2f' => 
     array (
       'weight1' => 10,
-      'weight2' => 5,
+      'weight2' => 25,
     ),
     'f2m' => 
     array (
       'weight1' => 10,
-      'weight2' => 3,
+      'weight2' => 20,
     ),
   ),
   'নিজের বাড়ি (asked to female only)' => 
@@ -165,7 +165,7 @@ return array (
     'f2m' => 
     array (
       'weight1' => 10,
-      'weight2' => 2,
+      'weight2' => 15,
     ),
   ),
   'গায়ের রং' => 
@@ -173,12 +173,12 @@ return array (
     'm2f' => 
     array (
       'weight1' => 50,
-      'weight2' => 89,
+      'weight2' => 55,
     ),
     'f2m' => 
     array (
       'weight1' => 50,
-      'weight2' => 1,
+      'weight2' => 10,
     ),
   ),
   'গড়ন' => 
@@ -186,12 +186,12 @@ return array (
     'm2f' => 
     array (
       'weight1' => 50,
-      'weight2' => 13,
+      'weight2' => 35,
     ),
     'f2m' => 
     array (
       'weight1' => 50,
-      'weight2' => 1,
+      'weight2' => 5,
     ),
   ),
   'হিজাব (asked to male only)' => 
@@ -199,7 +199,7 @@ return array (
     'm2f' => 
     array (
       'weight1' => 10,
-      'weight2' => 34,
+      'weight2' => 45,
     ),
     'f2m' => 
     array (
@@ -212,7 +212,7 @@ return array (
     'm2f' => 
     array (
       'weight1' => 10,
-      'weight2' => 1,
+      'weight2' => 5,
     ),
     'f2m' => 
     array (
