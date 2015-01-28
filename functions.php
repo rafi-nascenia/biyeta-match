@@ -31,8 +31,10 @@ function parsePrefs($name, $prefs) {
     if (strpos($prefs, '-') !== false) {
         list($lower, $upper) = explode('-', $prefs);
         $prefValues = range(trim($lower), trim($upper));
-    } else {
+    } elseif (strpos($prefs, ',') !== false) {
         $prefValues = array_map('trim', explode(',', $prefs));
+    } else {
+        $prefValues = array_map('trim', explode(' ', $prefs));
     }
 
     return $prefValues;
